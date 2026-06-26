@@ -1,0 +1,63 @@
+---
+description: Craft premium, immersive, award-level web experiences — high-end landing pages, interactive portfolios, Awwwards-style components. Apply when the user wants a luxury, premium, cinematic, or immersive frontend with advanced motion, dramatic typography, and flawless performance.
+globs:
+alwaysApply: false
+---
+
+# Premium / Luxury Frontend Craftsmanship
+
+Building premium frontend goes beyond functional HTML and CSS — architect immersive digital environments. Apply these standards when the user wants a high-end landing page, interactive portfolio, or component with top-tier visual polish.
+
+## Establish a creative foundation
+
+Don't default to generic, unopinionated code. Commit to one strong visual identity:
+- **Editorial Brutalism** — high-contrast monochrome, oversized type, sharp edges, raw grids.
+- **Organic Fluidity** — soft gradients, deep rounded corners, glassmorphism, bouncy spring physics.
+- **Cyber / Technical** — dark dominance, neon accents, monospaced type, staggered reveals.
+- **Cinematic Pacing** — full-viewport imagery, slow cross-fades, deep negative space, scroll storytelling.
+
+## Structural layers for immersion
+
+**Entry sequence.** No blank screen. A lightweight preloader resolves fonts/images/3D, then transitions away fluidly (split-door reveal, scale-up zoom, staggered text sweep).
+
+**Hero architecture.** Full-bleed `100vh`/`100dvh` containers. Break headlines syntactically (wrap by word or character) for cascading entrance animations. Use floating elements or clipping paths for depth behind the copy.
+
+**Fluid navigation.** No static navbars — sticky headers that react to scroll direction (hide on scroll down, reveal on scroll up). Rich hover states (mega-menus with image previews).
+
+## Motion design system
+
+Animation is connective tissue, not afterthought.
+
+**Scroll-driven narratives** (GSAP ScrollTrigger or equivalent): pinned containers that lock while content flows past; vertical-to-horizontal scroll translation for galleries; parallax with varying scroll-speeds across background/midground/foreground.
+
+**High-fidelity micro-interactions:** magnetic buttons (calculate pointer distance, pull toward cursor); custom cursor with lerp interpolation; dimensional hover via `scale`, `rotateX`, `translate3d`.
+
+## Typography & texture
+
+Massive scale contrast — headlines via `clamp()` up to ~`12vw`, body crisp at `16–18px` minimum. Prefer specified variable fonts or premium typefaces over system defaults. Add SVG/CSS noise overlays (`mix-blend-mode: overlay`, opacity `0.02–0.05`) to kill digital sterility. Frosted glass via `backdrop-filter: blur()` plus ultra-thin semi-transparent borders.
+
+## Performance imperative
+
+A beautiful site that stutters is a failure.
+- **Composite only** — animate `transform` and `opacity`. Fiercely avoid animating `width`, `height`, `top`, `margin`.
+- **`will-change: transform`** intelligently on heavy moving elements; remove post-animation.
+- **Responsive degradation** — wrap custom cursor and heavy hover behind `@media (hover: hover) and (pointer: fine)`.
+- **Accessibility** — wrap continuous animation in `@media (prefers-reduced-motion: no-preference)`. Never trade accessibility for flair.
+
+## Implementation ecosystem
+
+**React / Next.js:** Framer Motion (layout transitions, spring physics); Lenis (`@studio-freight/lenis`) for smooth scroll; React Three Fiber for WebGL/3D.
+
+**Vanilla / HTML / Astro:** GSAP for timeline sequencing; vanilla Lenis via CDN; SplitType for accessible typography chunking.
+
+## On any "premium / immersive / Awwwards-style" prompt
+
+1. Wrap output in scroll-smoothed architecture.
+2. Guarantee performance via composited layers.
+3. Integrate staggered component entrances.
+4. Elevate typography with fluid scales.
+5. Commit to one memorable aesthetic footprint.
+
+---
+
+*Converted for Cursor from the `premium-frontend-ui` skill in [github/awesome-copilot](https://github.com/github/awesome-copilot/tree/main/skills/premium-frontend-ui) (author: Utkarsh Patrikar). Prose preserved; Copilot-specific framing trimmed.*
