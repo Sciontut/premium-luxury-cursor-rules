@@ -1,63 +1,103 @@
 ---
-description: Craft premium, immersive, award-level web experiences — high-end landing pages, interactive portfolios, Awwwards-style components. Apply when the user wants a luxury, premium, cinematic, or immersive frontend with advanced motion, dramatic typography, and flawless performance.
+description: Craft quiet-luxury, award-level web experiences — high-end landing pages, editorial portfolios, premium brand sites. Apply when the user wants a luxury, premium, cinematic, or elegant frontend defined by restraint, editorial typography, and slow confident motion.
 globs:
 alwaysApply: false
 ---
 
 # Premium / Luxury Frontend Craftsmanship
 
-Building premium frontend goes beyond functional HTML and CSS — architect immersive digital environments. Apply these standards when the user wants a high-end landing page, interactive portfolio, or component with top-tier visual polish.
+Luxury is restraint executed with precision. This pack speaks in ONE voice:
+cinematic pacing, editorial typography, muted palettes, generous silence.
+(For raw grids and abrupt energy, use the industrial-brutalist pack instead —
+never blend the two.)
 
-## Establish a creative foundation
+## Identity
 
-Don't default to generic, unopinionated code. Commit to one strong visual identity:
-- **Editorial Brutalism** — high-contrast monochrome, oversized type, sharp edges, raw grids.
-- **Organic Fluidity** — soft gradients, deep rounded corners, glassmorphism, bouncy spring physics.
-- **Cyber / Technical** — dark dominance, neon accents, monospaced type, staggered reveals.
-- **Cinematic Pacing** — full-viewport imagery, slow cross-fades, deep negative space, scroll storytelling.
+- Feeling in five seconds: expensive, calm, assured. The site breathes.
+- Density is the enemy. When unsure, remove the element or double the space.
+- Every screen has one focal point. Nothing competes.
 
-## Structural layers for immersion
+## Structural layers
 
-**Entry sequence.** No blank screen. A lightweight preloader resolves fonts/images/3D, then transitions away fluidly (split-door reveal, scale-up zoom, staggered text sweep).
+**Entry sequence.** No blank screen and no spinner theatrics. A minimal
+preloader (wordmark or thin progress line) resolves fonts/images, then exits
+with a single fluid gesture — a slow fade-and-lift or a masked reveal.
+Duration ≤ 1.6s total; never gate repeat visits.
 
-**Hero architecture.** Full-bleed `100vh`/`100dvh` containers. Break headlines syntactically (wrap by word or character) for cascading entrance animations. Use floating elements or clipping paths for depth behind the copy.
+**Hero architecture.** Full-bleed `100dvh`. Headline broken by word or line
+for cascading entrance (SplitText). Depth comes from treated imagery and
+layered parallax, not floating gadgets.
 
-**Fluid navigation.** No static navbars — sticky headers that react to scroll direction (hide on scroll down, reveal on scroll up). Rich hover states (mega-menus with image previews).
+**Navigation.** Quiet by default: thin sticky header that hides on scroll
+down, returns on scroll up. Links are text with an underline or opacity
+motion — no pill buttons in the nav.
 
-## Motion design system
+## Motion language — GSAP + Lenis only
 
-Animation is connective tissue, not afterthought.
+GSAP (with ScrollTrigger, SplitText — all plugins free) is the sole motion
+library across every framework. Do not introduce Framer Motion, CSS keyframe
+systems, or other animation libraries into a luxury build.
 
-**Scroll-driven narratives** (GSAP ScrollTrigger or equivalent): pinned containers that lock while content flows past; vertical-to-horizontal scroll translation for galleries; parallax with varying scroll-speeds across background/midground/foreground.
+Named values (tune these in sketchbook reps — they are the signature):
 
-**High-fidelity micro-interactions:** magnetic buttons (calculate pointer distance, pull toward cursor); custom cursor with lerp interpolation; dimensional hover via `scale`, `rotateX`, `translate3d`.
+- `signature-in`: power3.out, 1.0s — default entrance
+- `signature-out`: expo.out, 0.9s — exits and reveals
+- `drift`: none (linear) — scrub-tied parallax only
+- Stagger: 0.08s default, 0.12s for headline chars
+- Hover response: 0.3s, power2.out, via `gsap.quickTo()` for pointer-follow
+
+Rules:
+- Entrances 0.8–1.2s. Nothing bounces, nothing elastic, nothing loops
+  for decoration.
+- Scroll narrative: pin sparingly (one pinned moment per page maximum);
+  scrub for parallax layers at differing speeds (bg 0.4x, mid 0.7x, fg 1x).
+- Magnetic buttons and custom cursor only behind
+  `@media (hover: hover) and (pointer: fine)`, movement ≤ 12px.
+- Reduced motion: `gsap.matchMedia()` with a calm variant — instant
+  opacity, no transforms.
 
 ## Typography & texture
 
-Massive scale contrast — headlines via `clamp()` up to ~`12vw`, body crisp at `16–18px` minimum. Prefer specified variable fonts or premium typefaces over system defaults. Add SVG/CSS noise overlays (`mix-blend-mode: overlay`, opacity `0.02–0.05`) to kill digital sterility. Frosted glass via `backdrop-filter: blur()` plus ultra-thin semi-transparent borders.
+- Display serif at fluid scale — `clamp()` up to ~9vw; body 16–18px min,
+  60–75ch measure. Maximum 2 families, loaded via next/font or
+  self-hosted variable fonts.
+- Letter-spacing tightens as size grows (-0.02em at display sizes).
+- Texture kills sterility: SVG noise overlay at opacity 0.02–0.04 with
+  `mix-blend-mode: overlay`. Frosted glass (`backdrop-filter: blur()`)
+  at most once per viewport, with an ultra-thin translucent border.
+- Palette: base + ink + ONE accent, all muted. No gradients unless the
+  project MASTER.md defines one.
 
 ## Performance imperative
 
 A beautiful site that stutters is a failure.
-- **Composite only** — animate `transform` and `opacity`. Fiercely avoid animating `width`, `height`, `top`, `margin`.
-- **`will-change: transform`** intelligently on heavy moving elements; remove post-animation.
-- **Responsive degradation** — wrap custom cursor and heavy hover behind `@media (hover: hover) and (pointer: fine)`.
-- **Accessibility** — wrap continuous animation in `@media (prefers-reduced-motion: no-preference)`. Never trade accessibility for flair.
+- Composite only: animate `transform` and `opacity`. Never width, height,
+  top, or margin.
+- `will-change: transform` applied intelligently and removed post-animation.
+- Treated images: consistent tone/grain, AVIF/WebP, sized, lazy below fold.
+- Accessibility is non-negotiable: 4.5:1 contrast minimum, visible focus
+  states styled to the palette, full keyboard paths.
 
 ## Implementation ecosystem
 
-**React / Next.js:** Framer Motion (layout transitions, spring physics); Lenis (`@studio-freight/lenis`) for smooth scroll; React Three Fiber for WebGL/3D.
+- **React / Next.js:** `@gsap/react` (`useGSAP` for scoping/cleanup) +
+  `lenis` for smooth scroll under ScrollTrigger. R3F only when MASTER.md
+  calls for a single dimensional moment.
+- **Astro / vanilla:** GSAP timelines + `lenis` (npm package `lenis` —
+  the `@studio-freight/lenis` name is deprecated).
 
-**Vanilla / HTML / Astro:** GSAP for timeline sequencing; vanilla Lenis via CDN; SplitType for accessible typography chunking.
+## Do not
 
-## On any "premium / immersive / Awwwards-style" prompt
-
-1. Wrap output in scroll-smoothed architecture.
-2. Guarantee performance via composited layers.
-3. Integrate staggered component entrances.
-4. Elevate typography with fluid scales.
-5. Commit to one memorable aesthetic footprint.
+- SaaS patterns: three-card feature grids with icons, pill badges, logo
+  walls, gradient CTAs.
+- Default easings or visible default component styling.
+- Emoji as icons; clip-art imagery; marketing filler copy ("Elevate your
+  journey") — copy is sparse, declarative, editorial.
+- Layout shift from animation. Ever.
 
 ---
 
-*Converted for Cursor from the `premium-frontend-ui` skill in [github/awesome-copilot](https://github.com/github/awesome-copilot/tree/main/skills/premium-frontend-ui) (author: Utkarsh Patrikar). Prose preserved; Copilot-specific framing trimmed.*
+*Adapted and substantially rewritten from the `premium-frontend-ui` skill in
+[github/awesome-copilot](https://github.com/github/awesome-copilot/tree/main/skills/premium-frontend-ui)
+(author: Utkarsh Patrikar). Narrowed to a single luxury voice, standardized
+on GSAP + Lenis, named motion values added.*
