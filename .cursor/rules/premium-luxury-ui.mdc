@@ -38,6 +38,14 @@ GSAP (with ScrollTrigger, SplitText — all plugins free) is the sole motion
 library across every framework. Do not introduce Framer Motion, CSS keyframe
 systems, or other animation libraries into a luxury build.
 
+Scope: GSAP-only governs authored motion — page choreography, scroll
+narratives, entrances, hovers. Component primitives' built-in enter/exit
+transitions (e.g. the tw-animate-css utilities that ship with the shadcn
+Vega starter) are exempt as component internals: a dialog fading in or a
+popover scaling open is not authored motion. But never use those utilities
+for page-level choreography, and where a component's default transition
+fights the luxury pacing, remove or neutralize it rather than tolerating it.
+
 Named values (tune these in sketchbook reps — they are the signature):
 
 - `signature-in`: power3.out, 1.0s — default entrance
